@@ -1,0 +1,27 @@
+schema_version: "v1"
+repository: "bodyinc.github.io"
+harness_exempt: true
+hygiene_contract:
+  required_checks:
+    - "merge_gate"
+    - "validate_hygiene_contract"
+    - "check_static_site"
+  required_paths:
+    - "README.md"
+    - "AGENTS.md"
+    - "site/CNAME"
+    - "site/robots.txt"
+    - "site/sitemap.xml"
+    - "site/index.html"
+    - "site/assets/**"
+  forbidden_paths:
+    - "runtime/**"
+    - "src/server/**"
+    - "api/**"
+    - "functions/**"
+    - "schemas/policy/**"
+  deterministic_routing:
+    selectors:
+      - "path_globs"
+      - "filetypes"
+      - "tags"

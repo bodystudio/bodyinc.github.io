@@ -1,0 +1,7 @@
+.DS_Store
+.pytest_cache/
+__pycache__/
+artifacts/
+*.pyc
+website_governance_report.json
+website_governance_report.md

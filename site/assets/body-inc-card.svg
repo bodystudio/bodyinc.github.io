@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Body Inc.">
+  <rect width="1200" height="630" fill="#F7F3EA"/>
+  <rect x="56" y="56" width="1088" height="518" rx="28" fill="#101315"/>
+  <circle cx="924" cy="164" r="54" fill="#B7D7D8"/>
+  <rect x="96" y="430" width="1008" height="6" fill="#C55A3D"/>
+  <text x="96" y="235" fill="#F7F3EA" font-family="Inter, Arial, sans-serif" font-size="92" font-weight="700">Body Inc.</text>
+  <text x="100" y="318" fill="#DCE1DF" font-family="Inter, Arial, sans-serif" font-size="36">The company behind Body Studio.</text>
+  <text x="100" y="512" fill="#F7F3EA" font-family="Inter, Arial, sans-serif" font-size="30">body.inc</text>
+</svg>
