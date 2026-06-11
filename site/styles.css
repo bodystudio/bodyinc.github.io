@@ -87,7 +87,7 @@ a:focus-visible {
   position: relative;
   display: flex;
   align-items: flex-end;
-  min-height: 82svh;
+  min-height: clamp(520px, 74svh, 720px);
   overflow: hidden;
   background: var(--dark);
   color: var(--paper);
@@ -282,7 +282,7 @@ h2 {
   }
 
   .hero {
-    min-height: 78svh;
+    min-height: clamp(560px, 68svh, 620px);
   }
 
   .heroImage {
