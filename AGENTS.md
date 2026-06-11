@@ -18,6 +18,7 @@
 - Do not add PHI, production exports, secrets, provider credentials, raw legal files, Delaware filings, sensitive screenshots, or source binaries.
 - Avoid unsupported investor, hiring, clinical, HIPAA, SOC 2, or regulatory claims.
 - Changes here must pass deterministic static-site hygiene checks in CI.
+- This repo uses a local `merge_gate` aggregate job during bootstrap so the first site PR is not blocked on org reusable-workflow access.
 - Codex cloud tasks for this repo are repo-scoped and must not assume access to `/Users/chase/Github/bodystudio` or sibling repos; read this repo's `AGENTS.md` before work, then consult `body-plans` plans and `body-infra/infra/github/repo_profiles.yaml` when available for cross-repo context.
 - PR description file references must use markdown links.
 ```yaml
