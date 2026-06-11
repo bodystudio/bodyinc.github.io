@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  merge_group:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: bodyinc-github-io-ci-${{ github.event_name }}-${{ github.event_name == 'merge_group' && github.event.merge_group.head_sha || github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  validate_hygiene_contract:
+    name: validate_hygiene_contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: |
+          python -m pip install "pyyaml==6.0.2" "jsonschema==4.22.0"
+      - name: Validate harness exemption contract
+        run: |
+          python tooling/validate_hygiene_contract.py
+      - name: Validate Pages deploy proof helper
+        run: |
+          python -m unittest tests/test_emit_pages_deploy_proof.py
+
+  check_static_site:
+    name: check_static_site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: "3.11"
+      - name: Check static site contract
+        run: |
+          python tooling/check_static_site.py --root .
+      - name: Run static site tests
+        run: |
+          python -m unittest tests/test_check_static_site.py
+
+  merge_gate:
+    needs: [validate_hygiene_contract, check_static_site]
+    uses: bodystudio/.github/.github/workflows/required-gates.yml@93f1cc58fe704ebd6196ada0d660b70c99319bdc
+    with:
+      repo_profile: app
+      bundle_mode: optional
+      agents_harness_mode: off
+      attestation_mode: exempt
+      startup_probe_command: "echo BODY_STARTUP bundle_version=0.0.0 bundle_sha256=0000000000000000000000000000000000000000000000000000000000000000 active_profile=bodyinc_static_site"

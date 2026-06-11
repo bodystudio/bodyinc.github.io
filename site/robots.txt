@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://body.inc/sitemap.xml

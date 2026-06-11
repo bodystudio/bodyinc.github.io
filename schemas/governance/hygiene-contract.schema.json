@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://body.inc/schemas/governance/hygiene-contract.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "repository",
+    "harness_exempt",
+    "hygiene_contract"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "v1"
+    },
+    "repository": {
+      "const": "bodyinc.github.io"
+    },
+    "harness_exempt": {
+      "const": true
+    },
+    "hygiene_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_checks",
+        "required_paths",
+        "forbidden_paths",
+        "deterministic_routing"
+      ],
+      "properties": {
+        "required_checks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "required_paths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "forbidden_paths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "deterministic_routing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["selectors"],
+          "properties": {
+            "selectors": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "enum": ["path_globs", "filetypes", "tags"]
+              },
+              "minItems": 3,
+              "maxItems": 3
+            }
+          }
+        }
+      }
+    }
+  }
+}
