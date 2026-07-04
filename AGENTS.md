@@ -15,12 +15,13 @@
 - Keep `site/CNAME` exactly `body.inc`; do not add wildcard DNS guidance.
 - Route consumer membership interest to `https://body.studio/` and `https://body.studio/waitlist.html`.
 - Do not invent or publish a contact mailbox.
-- Do not add PHI, production exports, secrets, provider credentials, raw legal files, Delaware filings, sensitive screenshots, or source binaries.
+- Do not add secrets, PHI, employment-confidential material, provider-auth material, commercial secrets, internal-ops records, production exports, private keys, Apple signing assets, provider credentials, raw legal files, Delaware filings, sensitive screenshots, or source binaries.
 - Avoid unsupported investor, hiring, clinical, HIPAA, SOC 2, or regulatory claims.
 - Changes here must pass deterministic static-site hygiene checks in CI.
 - This repo uses a local `merge_gate` aggregate job during bootstrap so the first site PR is not blocked on org reusable-workflow access.
-- Codex cloud tasks for this repo are repo-scoped and must not assume access to `/Users/chase/Github/bodystudio` or sibling repos; read this repo's `AGENTS.md` before work, then consult `body-plans` plans and `body-infra/infra/github/repo_profiles.yaml` when available for cross-repo context.
+- Codex work for this repo is coordinated from the local Mac using repo-scoped worktrees under `/Users/chase/Github/bodystudio/worktrees`; read this repo's `AGENTS.md` before work, then consult `body-plans` plans and `body-infra/infra/github/repo_profiles.yaml` when available for cross-repo context.
 - PR description file references must use markdown links.
+- If proof requires macOS, Xcode, simulator/device, hardware, signing, org settings, provider account credentials, governed provider setup, branch protection changes, or local-only secrets, collect evidence from the local Mac or required human-approved control plane; do not claim completion from static repo checks alone.
 ```yaml
 failure_class_source:
   - AGENTS.md
